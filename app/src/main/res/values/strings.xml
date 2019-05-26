@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Low-level OAuth demo</string>
+    <string name="count">Count</string>
+    <string name="std_browser">Login using standard browser (private scheme)</string>
+    <string name="custom_tab">Login using custom tabs (private scheme)</string>
+    <string name="toast_msg">Toast!</string>
+    <string name="login_custom_tabs_https">Login using custom tabs (https)</string>
+    <string name="start_again">Start again</string>
+</resources>
