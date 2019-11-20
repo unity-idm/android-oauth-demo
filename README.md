@@ -14,12 +14,13 @@ After installation the IP of the server must be configured in the OAuthServiceSe
 
 * Configure basic server settings in unityServer.conf before starting it:
 
-Set your (non localhost) IP address of the server, e.g.:
+Set your (non localhost) IP address of the server & disable accepting client certificates, e.g.:
 
 ```
 unityServer.core.httpServer.host=10.10.0.1
 unityServer.core.httpServer.port=2443
 unityServer.core.httpServer.advertisedHost=10.10.0.1:2443
+unityServer.core.httpServer.wantClientAuthn=false
 ```
 
 * Start the server and login to Admin Console. With the above settings it will be on `https://10.10.0.1:2443/console`
