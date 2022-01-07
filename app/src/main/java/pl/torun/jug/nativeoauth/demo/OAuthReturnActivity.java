@@ -24,7 +24,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import static pl.torun.jug.nativeoauth.demo.OAuthServiceSettings.CLIENT_ID;
-import static pl.torun.jug.nativeoauth.demo.OAuthServiceSettings.CLIENT_INSECURE_PASSWORD;
 import static pl.torun.jug.nativeoauth.demo.OAuthServiceSettings.PROFILE_ENDPOINT_URL;
 import static pl.torun.jug.nativeoauth.demo.OAuthServiceSettings.TOKEN_ENDPOINT_URL;
 
@@ -104,13 +103,6 @@ public class OAuthReturnActivity extends AppCompatActivity {
                 String url = HttpUrl.parse(TOKEN_ENDPOINT_URL).newBuilder()
                                 .build().toString();
                 String authzCode = returnURI.getQueryParameter("code");
-
-                //This is current (v 2.8.x) Unity limitation: some password must be given for
-                // the token endpoint always. Though it is merely technical limitation, the actual client
-                // verification is performed using PKCS.
-                // Other providers and newer versions of Unity may not need it, and always it is not
-                // providing any sort of security.
-                String credential = Credentials.basic(CLIENT_ID, CLIENT_INSECURE_PASSWORD);
                 RequestBody formBody = new FormBody.Builder()
                                 .add("grant_type", "authorization_code")
                                 .add("code", authzCode)
@@ -119,7 +111,6 @@ public class OAuthReturnActivity extends AppCompatActivity {
                                 .add("code_verifier", oauthState.codeVerifier)
                                 .build();
                 return new Request.Builder()
-                                .addHeader("Authorization", credential)
                                 .post(formBody)
                                 .url(url)
                                 .build();
